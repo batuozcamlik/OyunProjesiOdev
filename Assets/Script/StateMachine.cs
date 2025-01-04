@@ -33,7 +33,9 @@ public class BaltaState : State
             Debug.Log("Char yok !");
             return;
         }
-        base.currentChar.damage = 10;
+        base.currentChar.agacHasar = 50;
+        base.currentChar.enemyHasar = 30;
+        base.currentChar.tasHasar = 10;
     }
 
     public override void sagTik()
@@ -52,7 +54,10 @@ public class CapaState : State
             Debug.Log("Char yok !");
             return;
         }
-        base.currentChar.damage = 5;
+
+        base.currentChar.agacHasar = 10;
+        base.currentChar.enemyHasar = 10;
+        base.currentChar.tasHasar = 10;
     }
 
     public override void sagTik()
@@ -71,7 +76,9 @@ public class KazmaState : State
             Debug.Log("Char yok !");
             return;
         }
-        base.currentChar.damage = 15;
+        base.currentChar.agacHasar = 10;
+        base.currentChar.enemyHasar = 40;
+        base.currentChar.tasHasar = 50;
     }
 
     public override void sagTik()
@@ -90,7 +97,10 @@ public class KilicState : State
             Debug.Log("Char yok !");
             return;
         }
-        base.currentChar.damage = 50;
+
+        base.currentChar.agacHasar = 10;
+        base.currentChar.enemyHasar = 50;
+        base.currentChar.tasHasar = 10;
     }
 
     public override void sagTik()

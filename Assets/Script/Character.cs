@@ -18,21 +18,32 @@ public class Character : MonoBehaviour
     public hand currentHand;
 
     public int damage;
+
+    public int agacHasar;
+    public int enemyHasar;
+    public int tasHasar;
+
+
+    public Transform[] checkPoints; 
+    public float checkRadius = 1f; 
+    public LayerMask targetLayer; 
+
+    
     private void Start()
     {
         stateMachine = new CharacterStateMachine(this);
         checkState();
 
-        //stateMachine.SetIdleState();
+     
     }
 
     private void Update()
     {
-        // Fare tekerleði yukarý hareketi
+        #region Fare Hareketi
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             counter++;
-            if (counter > 3) // Eðer 4'ü geçerse 0'a dön
+            if (counter > 3) 
             {
                 counter = 0;
             }
@@ -41,7 +52,7 @@ public class Character : MonoBehaviour
 
         }
 
-        // Fare tekerleði aþaðý hareketi
+       
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             counter--;
@@ -52,14 +63,41 @@ public class Character : MonoBehaviour
             Debug.Log("Counter: " + counter);
             checkState();
         }
+        #endregion
 
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             stateMachine.currentState.solTik();
+
+        }
+        if (Input.GetMouseButtonDown(0))
+        {
+
+            foreach (var point in checkPoints)
+            {
+                // Belirtilen noktada bir çember kontrolü yap
+                Collider2D hit = Physics2D.OverlapCircle(point.position, checkRadius, targetLayer);
+
+                if (hit != null)
+                {
+                    if(hit.gameObject.tag=="Agac")
+                    {
+                        damage = agacHasar;
+                    }
+                    else if(hit.gameObject.tag=="Tas")
+                    {
+                        damage = tasHasar;
+                    }
+                    else if( hit.gameObject.tag=="Enemy")
+                    {
+                        damage = enemyHasar;
+                    }
+                }
+                
+            }
         }
 
-        
-       
+
     }
     public void checkState()
     {
@@ -84,6 +122,25 @@ public class Character : MonoBehaviour
             default:
                 Debug.LogWarning("Geçersiz durum!");
                 break;
+        }
+
+
+    }
+
+    public void checkAnim()
+    {
+
+    }
+    void OnDrawGizmos()
+    {
+        
+        if (checkPoints != null)
+        {
+            Gizmos.color = Color.red;
+            foreach (var point in checkPoints)
+            {
+                Gizmos.DrawWireSphere(point.position, checkRadius);
+            }
         }
     }
 }
