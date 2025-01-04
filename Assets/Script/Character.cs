@@ -84,7 +84,7 @@ public class Character : MonoBehaviour
             stateMachine.currentState.solTik();
 
         }
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0)&& charController.canMove)
         {
             checkAnim();
             charController.canMove = false;
