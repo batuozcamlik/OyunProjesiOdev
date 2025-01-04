@@ -11,6 +11,8 @@ public class TopDownCharacterController : MonoBehaviour
     public Animator anim;
     public GameObject trigger;
 
+    public bool canMove = true;
+
     private void Start()
     {
         anim=GetComponent<Animator>();
@@ -19,8 +21,16 @@ public class TopDownCharacterController : MonoBehaviour
     void Update()
     {
        
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if(canMove)
+        {
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            movement = Vector2.zero;
+        }
+      
 
         if(movement != Vector2.zero)
         {

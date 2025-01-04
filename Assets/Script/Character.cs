@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using UnityEditor;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
@@ -26,11 +28,14 @@ public class Character : MonoBehaviour
 
     public Transform[] checkPoints; 
     public float checkRadius = 1f; 
-    public LayerMask targetLayer; 
+    public LayerMask targetLayer;
 
-    
+    public Animator anim;
+    public GameObject currentHit;
+    public TopDownCharacterController charController;
     private void Start()
     {
+        anim = GetComponent<Animator>();
         stateMachine = new CharacterStateMachine(this);
         checkState();
 
@@ -72,7 +77,8 @@ public class Character : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-
+            checkAnim();
+            charController.canMove = false;
             foreach (var point in checkPoints)
             {
                 // Belirtilen noktada bir çember kontrolü yap
@@ -92,11 +98,21 @@ public class Character : MonoBehaviour
                     {
                         damage = enemyHasar;
                     }
+                    currentHit = hit.gameObject;
                 }
                 
             }
         }
 
+
+    }
+    public void hasar()
+    {
+        charController.canMove = true;
+        if(currentHit != null)
+        {
+            currentHit.gameObject.GetComponent<GetDamage>().getDamage(damage);
+        }
 
     }
     public void checkState()
@@ -129,7 +145,29 @@ public class Character : MonoBehaviour
 
     public void checkAnim()
     {
+        switch (currentHand)
+        {
+            case hand.balta:
 
+                anim.SetTrigger("Balta");
+                
+                break;
+            case hand.kazma:
+
+                anim.SetTrigger("Kazma");
+                break;
+            case hand.capa:
+
+                anim.SetTrigger("Capa");
+                break;
+            case hand.kilic:
+
+                anim.SetTrigger("Kilic");
+                break;
+            default:
+                Debug.LogWarning("Geçersiz durum!");
+                break;
+        }
     }
     void OnDrawGizmos()
     {
