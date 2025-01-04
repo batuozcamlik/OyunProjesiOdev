@@ -22,10 +22,11 @@ public class PlayerFarmManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Farm")
+        if(collision.gameObject.tag=="Farm" && isInside==false)
         {
             isInside = true;
             currentFarmMng= collision.gameObject.GetComponent<FarmManager>();
+            currentFarmMng.gosterme.SetActive(true);
         }
     }
 
@@ -33,6 +34,7 @@ public class PlayerFarmManager : MonoBehaviour
     {
         if (collision.gameObject.tag == "Farm")
         {
+            currentFarmMng.gosterme.SetActive(false);
             isInside = false;
             currentFarmMng = null;
         }

@@ -11,9 +11,11 @@ public class GetDamage : MonoBehaviour
     public GameObject infoPrefab;
 
     public Sprite destroyImage;
+    public string addMngName;
+    public GameMng mng;
     void Start()
     {
-        
+        mng = FindAnyObjectByType<GameMng>();    
     }
 
     // Update is called once per frame
@@ -49,7 +51,7 @@ public class GetDamage : MonoBehaviour
 
     public void spawnDamageInfo(int damage)
     {
-        GameObject a = Instantiate(infoPrefab, transform.localPosition + new Vector3(0,0.5f,0), Quaternion.identity);
+        GameObject a = Instantiate(infoPrefab, transform.position + new Vector3(0,0.5f,0), Quaternion.identity);
         float scale = Random.Range(0.5f, 1f);
         a.transform.DOScale(scale, 0);
         a.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = damage.ToString();

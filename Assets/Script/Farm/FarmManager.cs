@@ -18,8 +18,13 @@ public class FarmManager : MonoBehaviour
     public SpriteRenderer plantSprite;
 
     public Sprite[] farmSprite;
+    public GameMng mng;
+
+    public GameObject gosterme;
+    public GameObject toplanbilirGorsel;
     void Start()
     {
+        mng=FindAnyObjectByType<GameMng>();
         
     }
 
@@ -28,10 +33,12 @@ public class FarmManager : MonoBehaviour
     {
         if(!isPlanted)
         {
+            toplanbilirGorsel.SetActive(false);
             return;
         }
         if(currentFarmDuration > 0)
         {
+            toplanbilirGorsel.SetActive(false);
             currentFarmDuration -= Time.deltaTime;
 
             if(farmDuration/2 >currentFarmDuration)
@@ -42,12 +49,19 @@ public class FarmManager : MonoBehaviour
         else
         {
             canCollected = true;
+            toplanbilirGorsel.SetActive(true);
             plantSprite.sprite = farmSprite[2];
         }
+        
     }
 
     public void etkilesim()
     {
+        if(isPlanted==true && canCollected==false)
+        {
+            return;
+        }
+
         if(canCollected==false)
         {
          
@@ -58,6 +72,16 @@ public class FarmManager : MonoBehaviour
         else
         {
             Debug.Log("Topla");
+
+            if(currentFarmType==farmType.bugday)
+            {
+                mng.bugday++;
+            }
+            else if(currentFarmType ==farmType.havuc)
+            {
+                mng.havuc++;
+            }
+
             canCollected = false;
             plantSprite.sprite = null;
             isPlanted = false;
