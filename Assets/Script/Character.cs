@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 
 public enum hand
@@ -33,6 +34,14 @@ public class Character : MonoBehaviour
     public Animator anim;
     public GameObject currentHit;
     public TopDownCharacterController charController;
+
+    [Header("UI Gorselleri")]
+    public Image img;
+
+    public Sprite baltaImg;
+    public Sprite kazmaImg;
+    public Sprite capaImg;
+    public Sprite kilicImg;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -139,8 +148,36 @@ public class Character : MonoBehaviour
                 Debug.LogWarning("Geçersiz durum!");
                 break;
         }
+        checkUI();
 
 
+    }
+
+    public void checkUI()
+    {
+        switch (currentHand)
+        {
+            case hand.balta:
+
+                img.sprite = baltaImg;
+
+                break;
+            case hand.kazma:
+
+                img.sprite = kazmaImg;
+                break;
+            case hand.capa:
+
+                img.sprite = capaImg;
+                break;
+            case hand.kilic:
+
+                img.sprite = kilicImg;
+                break;
+            default:
+                Debug.LogWarning("Geçersiz durum!");
+                break;
+        }
     }
 
     public void checkAnim()
