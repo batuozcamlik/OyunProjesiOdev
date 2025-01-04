@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8938358823881190663}
   - component: {fileID: 8255781464734543635}
   - component: {fileID: 7710830964506219802}
+  - component: {fileID: 1066405720307906871}
   m_Layer: 6
   m_Name: Agac
   m_TagString: Agac
@@ -146,5 +147,27 @@ MonoBehaviour:
   healt: 200
   infoPrefab: {fileID: 5919694497655810823, guid: 1fe91e69a7d48e04ca140e33fe3cff55, type: 3}
   destroyImage: {fileID: 555732370, guid: 204a76865b3129b45ab1ec77cf5b35b4, type: 3}
-  addMngName: Agac
+  addMngName: odun
   mng: {fileID: 0}
+  anim: {fileID: 1066405720307906871}
+--- !u!95 &1066405720307906871
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5505509419858910742}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4441222aa232c5d4b87d57560bebf3fd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

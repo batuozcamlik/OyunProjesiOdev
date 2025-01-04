@@ -10,8 +10,11 @@ public class RandomMover : MonoBehaviour
 
     private Vector3 targetPosition;
 
+    public Animator anim;
+
     void Start()
     {
+        anim=GetComponent<Animator>();
         // Ýlk hedef pozisyonu belirle
         SetNewTargetPosition();
         StartCoroutine(MoveToRandomPosition());
@@ -33,10 +36,24 @@ public class RandomMover : MonoBehaviour
             while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+                anim.SetBool("move", true);
+
+                if (targetPosition.x > transform.position.x)
+                {
+                    GetComponent<SpriteRenderer>().flipX = true;
+                }
+                else if (targetPosition.x < transform.position.x)
+                {   
+                    GetComponent<SpriteRenderer>().flipX = false;
+                }
+
+                
                 yield return null;
             }
 
+
             // Hedefe ulaþtýktan sonra bekle
+            anim.SetBool("move", false);
             yield return new WaitForSeconds(Random.Range(waitTime,waitTime*2));
 
             // Yeni bir hedef belirle

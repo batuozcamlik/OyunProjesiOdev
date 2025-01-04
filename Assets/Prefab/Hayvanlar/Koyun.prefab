@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9038565190986318483}
   - component: {fileID: 7775021757222259129}
   - component: {fileID: 3331201153325659458}
+  - component: {fileID: 5066923845187463268}
   m_Layer: 6
   m_Name: Koyun
   m_TagString: Enemy
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -819599157, guid: 8f27df73a1b46e44c848756a0bd0f92e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -103,6 +104,7 @@ MonoBehaviour:
   maxPosition: {fileID: 0}
   moveSpeed: 1
   waitTime: 2
+  anim: {fileID: 5066923845187463268}
 --- !u!114 &7775021757222259129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,3 +167,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6047596, y: 0.45363835}
   m_EdgeRadius: 0
+--- !u!95 &5066923845187463268
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505063957659122019}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf52b632e4c737e4e9f1e5c8bf78f1c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

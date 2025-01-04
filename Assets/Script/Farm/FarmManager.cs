@@ -76,10 +76,12 @@ public class FarmManager : MonoBehaviour
             if(currentFarmType==farmType.bugday)
             {
                 mng.bugday++;
+                mng.updateText();
             }
             else if(currentFarmType ==farmType.havuc)
             {
                 mng.havuc++;
+                mng.updateText();
             }
 
             canCollected = false;

@@ -13,6 +13,7 @@ public class GetDamage : MonoBehaviour
     public Sprite destroyImage;
     public string addMngName;
     public GameMng mng;
+    public Animator anim;
     void Start()
     {
         mng = FindAnyObjectByType<GameMng>();    
@@ -26,11 +27,20 @@ public class GetDamage : MonoBehaviour
 
     public void getDamage(int dmg)
     {
+        if(healt<=0)
+        {
+            return;
+        }
         healt -= dmg;
+        if(anim!=null)
+        {
+            anim.SetTrigger("Vur");
+        }
         spawnDamageInfo(dmg);
         if (healt <= 0)
         {
             Debug.Log("Kirildi");
+            mng.add(addMngName);
             destObj();
         }
     }

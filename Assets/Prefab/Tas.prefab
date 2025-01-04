@@ -146,5 +146,6 @@ MonoBehaviour:
   healt: 200
   infoPrefab: {fileID: 5919694497655810823, guid: 1fe91e69a7d48e04ca140e33fe3cff55, type: 3}
   destroyImage: {fileID: 0}
-  addMngName: Tas
+  addMngName: tas
   mng: {fileID: 0}
+  anim: {fileID: 0}
