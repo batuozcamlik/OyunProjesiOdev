@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameMng : MonoBehaviour
 {
+    [Header("All Value")]
     public int bugday;
     public int havuc;
     public int odun;
@@ -49,5 +50,45 @@ public class GameMng : MonoBehaviour
         odunText.text = "x" + odun.ToString();
         tasText.text = "x" + tas.ToString();
         altinText.text = "x" + altin.ToString();
+    }
+
+    public void havucSat(int para)
+    {
+        if(havuc>0)
+        {
+            havuc--;
+            altin += para;
+        }
+        updateText();
+    }
+
+    public void bugdaySat(int para)
+    {
+        if (bugday > 0)
+        {
+            bugday--;
+            altin += para;
+        }
+        updateText();
+    }
+
+    public void tasSat(int para)
+    {
+        if (tas > 0)
+        {
+            tas--;
+            altin += para;
+        }
+        updateText();
+    }
+
+    public void odunSat(int para)
+    {
+        if (odun > 0)
+        {
+            odun--;
+            altin += para;
+        }
+        updateText();
     }
 }

@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class RandomMover : MonoBehaviour
 {
-    public Transform minPosition; // Minimum pozisyon
-    public Transform maxPosition; // Maksimum pozisyon
-    public float moveSpeed = 5f; // Hareket hýzý
-    public float waitTime = 2f; // Bekleme süresi
+    public Transform minPosition; 
+    public Transform maxPosition;
+    public float moveSpeed = 5f; 
+    public float waitTime = 2f; 
 
     private Vector3 targetPosition;
 
@@ -15,14 +15,14 @@ public class RandomMover : MonoBehaviour
     void Start()
     {
         anim=GetComponent<Animator>();
-        // Ýlk hedef pozisyonu belirle
+        
         SetNewTargetPosition();
         StartCoroutine(MoveToRandomPosition());
     }
 
     void SetNewTargetPosition()
     {
-        // Rastgele bir hedef pozisyon seç
+       
         float randomX = Random.Range(minPosition.position.x, maxPosition.position.x);
         float randomY = Random.Range(minPosition.position.y, maxPosition.position.y);
         targetPosition = new Vector3(randomX, randomY, transform.position.z);
@@ -32,7 +32,7 @@ public class RandomMover : MonoBehaviour
     {
         while (true)
         {
-            // Hedef pozisyona doðru hareket et
+            
             while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
@@ -52,11 +52,11 @@ public class RandomMover : MonoBehaviour
             }
 
 
-            // Hedefe ulaþtýktan sonra bekle
+            
             anim.SetBool("move", false);
             yield return new WaitForSeconds(Random.Range(waitTime,waitTime*2));
 
-            // Yeni bir hedef belirle
+            
             SetNewTargetPosition();
         }
     }

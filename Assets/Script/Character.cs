@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     private int counter = 0;
     public hand currentHand;
 
+    [Header("Hasar")]
     public int damage;
 
     public int agacHasar;
@@ -61,7 +62,7 @@ public class Character : MonoBehaviour
             {
                 counter = 0;
             }
-            Debug.Log("Counter: " + counter);
+           
             checkState();
 
         }
@@ -70,11 +71,11 @@ public class Character : MonoBehaviour
         if (Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
             counter--;
-            if (counter < 0) // Eðer 0'ýn altýna düþerse 4'e dön
+            if (counter < 0) 
             {
                 counter = 3;
             }
-            Debug.Log("Counter: " + counter);
+            
             checkState();
         }
         #endregion
